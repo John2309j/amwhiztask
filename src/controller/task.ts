@@ -149,18 +149,27 @@ export const GetTask=async(req:AuthenticatedRequest,res:Response)=>{
        }
 
        // Perform the query with the options provided or defaults
-       const GetTasks = await TaskInstance.findAll({
-           where: whereCondition,
-           limit: limit,
-           offset: offset,
-           order: [
-               [sortField, sortOrder]
-           ]
-       });
 
-  
+       try{
+        const GetTasks = await TaskInstance.findAll({
+            where: whereCondition,
+            limit: limit,
+            offset: offset,
+            order: [
+                [sortField, sortOrder]
+            ]
+        });
+ 
+   
+ 
+     return res.status(200).json({list:GetTasks})
 
-    return res.status(200).json({list:GetTasks})
+       }catch(err)
+       {
+         
+     return res.status(500).json({msg:'Error on fetching tasks'})
+       }
+     
     
 }
 
