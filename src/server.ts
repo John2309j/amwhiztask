@@ -10,7 +10,7 @@ const app=express();
 
 const limiter = rateLimit({
 	windowMs: 1 * 60 * 1000, // 1 minute
-	limit: 100, // Limit each IP to 5 requests per `window` (here, per 1 minute).
+	limit: 100,
 	standardHeaders: true, 
 	legacyHeaders: false
 });
