@@ -106,15 +106,20 @@ const GetTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         whereCondition.due_date = dueDate;
     }
     // Perform the query with the options provided or defaults
-    const GetTasks = yield task_1.TaskInstance.findAll({
-        where: whereCondition,
-        limit: limit,
-        offset: offset,
-        order: [
-            [sortField, sortOrder]
-        ]
-    });
-    return res.status(200).json({ list: GetTasks });
+    try {
+        const GetTasks = yield task_1.TaskInstance.findAll({
+            where: whereCondition,
+            limit: limit,
+            offset: offset,
+            order: [
+                [sortField, sortOrder]
+            ]
+        });
+        return res.status(200).json({ list: GetTasks });
+    }
+    catch (err) {
+        return res.status(500).json({ msg: 'Error on fetching tasks' });
+    }
 });
 exports.GetTask = GetTask;
 function CheckDeleteAccess(Obj, UserId) {

@@ -12,7 +12,7 @@ const task_1 = __importDefault(require("./route/task"));
 const app = (0, express_1.default)();
 const limiter = (0, express_rate_limit_1.rateLimit)({
     windowMs: 1 * 60 * 1000, // 1 minute
-    limit: 100, // Limit each IP to 5 requests per `window` (here, per 1 minute).
+    limit: 100,
     standardHeaders: true,
     legacyHeaders: false
 });
